@@ -5,15 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Raunak Kumar | Developer Portfolio</title>
   <meta name="description" content="Portfolio of Raunak Kumar: CSE undergrad at NIE Mysuru, Google Student Ambassador, and AI/ML & full-stack builder.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚀</text></svg>">
-  <style>
-    /* Small additions for new sections; reuses your existing theme variables/classes */
-    .meta-line { font-size: .9rem; opacity: .75; margin: .25rem 0 .75rem; }
-    .achv-list { list-style: none; padding: 0; margin: 0; display: grid; gap: .6rem; }
-    .achv-list li::before { content: "🏆 "; }
-    .hero-actions { flex-wrap: wrap; }
-  </style>
 </head>
 <body>
 
@@ -38,7 +34,8 @@
 
   <!-- Hero Section -->
   <header class="hero">
-    <div class="container hero-content">
+    <div class="container hero-layout">
+      <div class="hero-content">
       <div class="status-badge">
         <span class="status-pulse"></span>
         <span>Available for Collaborations & Open Source</span>
@@ -68,6 +65,11 @@
           LinkedIn
         </a>
       </div>
+      </div>
+
+      <figure class="hero-photo">
+        <img src="raunak.jpeg" alt="Portrait of Raunak Kumar" width="300" height="375" id="hero-img">
+      </figure>
     </div>
   </header>
 
@@ -320,6 +322,24 @@
   <!-- Toast Notification -->
   <div id="toast" class="toast">Email copied to clipboard!</div>
 
+  <script>
+    // Tries common file names/folders so the portrait loads even if the path differs slightly
+    (function () {
+      var img = document.getElementById('hero-img');
+      if (!img) return;
+      var tries = ['raunak.jpeg', 'raunak.jpg', 'Raunak.jpeg', 'Raunak.jpg', 'raunak.png',
+                   'images/raunak.jpeg', 'images/raunak.jpg', 'assets/raunak.jpeg', 'assets/raunak.jpg',
+                   'img/raunak.jpeg', 'img/raunak.jpg'];
+      var i = 0;
+      img.onerror = function () {
+        i++;
+        if (i < tries.length) { img.src = tries[i]; }
+        else { img.parentElement.classList.add('no-img'); console.warn('Portrait not found. Tried:', tries); }
+      };
+      img.src = tries[0];
+    })();
+  </script>
   <script src="js/main.js"></script>
+  <script src="js/effects.js"></script>
 </body>
 </html>
