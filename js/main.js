@@ -175,3 +175,27 @@
   }
   requestAnimationFrame(draw);
 })();
+// Dark / Light Theme Toggle
+(function () {
+  const button = document.getElementById("theme-toggle");
+  if (!button) return;
+
+  const root = document.documentElement;
+
+  function applyTheme(theme) {
+    root.setAttribute("data-theme", theme);
+    button.textContent = theme === "dark" ? "☀️" : "🌙";
+    button.setAttribute(
+      "aria-label",
+      theme === "dark" ? "Switch to light mode" : "Switch to dark mode"
+    );
+    localStorage.setItem("theme", theme);
+  }
+
+  applyTheme(localStorage.getItem("theme") || "dark");
+
+  button.addEventListener("click", function () {
+    const current = root.getAttribute("data-theme") || "dark";
+    applyTheme(current === "dark" ? "light" : "dark");
+  });
+})();
